@@ -1,0 +1,31 @@
+# Set the title of the plot
+set title "Canada Diabetes Averages From 2015 to 2021 Within Three Age Groups"
+
+# Set the position of the legend (key) to the left, centered horizontally, 
+# and aligned to the top of the plot, with the labels in reverse order
+set key Left center top reverse
+
+# Set the fill style for the boxes to solid
+set style fill solid
+
+# Set the width of the boxes to 0.9 times the default width
+set boxwidth 0.9
+
+# Turn on the grid
+set grid
+
+# Set the range of the y-axis to go from 0.5 to 20
+set yrange [0.5:20]
+
+# Set the label for the y-axis
+set ylabel "Diabetes Averages (%)"
+
+# Set the label for the x-axis
+set xlabel "Age Group"
+
+# Plot the data from the "plot_Q6.txt" file, using the second column for the heights
+# of the boxes and using the labels in the first column for the x-axis ticks with a title
+plot 'plot_Q6.txt' using 2:xtic(1) with boxes title "{/:Bold National Average %}" linecolor 3, \
+     'plot_Q6.txt' using 0:($2+.5):(sprintf("%3.2f%%",$2)) with labels notitle
+# Add labels to each box with the value of the height, formatted as a percentage
+# The labels are shifted upwards by 0.5 units
